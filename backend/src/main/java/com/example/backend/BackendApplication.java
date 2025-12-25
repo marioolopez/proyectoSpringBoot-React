@@ -1,9 +1,8 @@
 package com.example.backend;
-
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-@SpringBootApplication
+@SpringBootApplication //clase PRINCIPAL
 public class BackendApplication {
 
 	public static void main(String[] args) {
