@@ -5,7 +5,7 @@ import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import lombok.*;
 
-@Entity // "Le dice a SPRING = Esta clase es una tabla de base de datos"
+@Entity // Le dice a SPRING = Esta clase es una tabla de base de datos"
 
 // Esto lo ponemos de esta forma gracias a lombok, sin lombok tendriamos que
 // Escribir manualmente los getters, setters, constructores...
@@ -30,12 +30,4 @@ public class Usuario {
 
 }
 
-/*
- * TENEMOS POR MISIÓN HACER ESTO:
- * 
- * GET /api/usuarios
- * GET /api/usuarios/{id}
- * POST /api/usuarios
- * PUT /api/usuarios/{id}
- * DELETE /api/usuarios/{id}
- */
+// TENEMOS POR MISION HACER UN CRUD, UN MVP
