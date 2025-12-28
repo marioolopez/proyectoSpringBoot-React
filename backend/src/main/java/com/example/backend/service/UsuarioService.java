@@ -12,7 +12,7 @@ import java.util.Optional; //se usa cuando queremos DEVOLVER un UNICO usuario   
 public class UsuarioService { // CREAS LAS PETICIONES AL BACKEND
 
     @Autowired
-    public UsuarioRepositorio usuarioRespositorio; // creas un atributo usuarioRespositorio
+    private UsuarioRepositorio usuarioRespositorio; // creas un atributo usuarioRespositorio
 
     // listar todos los usuarios
     public List<Usuario> listarUsuarios() {

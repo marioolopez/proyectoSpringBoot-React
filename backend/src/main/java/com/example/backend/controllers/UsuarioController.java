@@ -20,6 +20,7 @@ public class UsuarioController { // peticion que le llega del frontend (endpoint
         return usuarioService.listarUsuarios();
     }
 
+    // GET/api/usuarios/{id}
     @GetMapping("/{id}")
     public Usuario obtenerUsuario(@PathVariable Long id) {
         return usuarioService.obtenerUsuario(id);
