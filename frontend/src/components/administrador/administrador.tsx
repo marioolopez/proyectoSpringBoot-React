@@ -1,30 +1,46 @@
 import { useEffect, useState } from "react";
 import { administradorService } from "../../services/administradorService";
 import type { administrador } from "../../models/administrador";
-import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Button, TextField } from "@mui/material";
+import {Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Button, TextField } from "@mui/material";
 
-function Administrador() {
+function Administrador(){
   const [admins, setAdmins] = useState<administrador[]>([]);
   const [nombre, setNombre] = useState("");
   const [email, setEmail] = useState("");
   const [editId, setEditId] = useState<number | null>(null);
 
+
   const cargarAdmins = async () => {
-    const data = await administradorService.getAll();
-    setAdmins(data);
+    try{
+      const data = await administradorService.getAll();
+      console.log("Datos recibidos:",data);
+      setAdmins(data);
+    }catch(error){
+      console.error(error);
+    }
   };
 
-  useEffect(() => { 
-    cargarAdmins();
-  }, []);
-  
+  useEffect(() => {
+  const fetchAdmins = async () => {
+    try {
+      const data = await administradorService.getAll();
+      setAdmins(data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+  fetchAdmins();
+}, []);
+
+
+
 
   const guardar = async () => {
-    if (!nombre || !email) return;
+    if(!nombre || !email) return;
 
-    if (editId === null) {
+    if(editId === null){
       await administradorService.create({ nombre, email });
-    } else {
+    }else{
       await administradorService.update(editId, { nombre, email });
       setEditId(null);
     }
@@ -34,13 +50,13 @@ function Administrador() {
     cargarAdmins();
   };
 
-  const editar = (admin: administrador) => {
+  const editar = (admin: administrador) =>{ 
     setNombre(admin.nombre);
     setEmail(admin.email);
     setEditId(admin.id);
   };
 
-  const eliminar = async (id: number) => {
+  const eliminar = async (id: number) =>{
     await administradorService.delete(id);
     cargarAdmins();
   };
