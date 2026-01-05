@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+//esto de aqui es la conexion hacia tu frontend (aunque en el frontend tienes crearla tambien)
 @CrossOrigin(origins = "http://localhost:5173")
 @RestController
 @RequestMapping("/api/usuarios")

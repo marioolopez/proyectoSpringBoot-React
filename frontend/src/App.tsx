@@ -1,14 +1,14 @@
 import './App.css'
-import Administrador from './components/administrador'
+import UsuarioAdmin from "./components/UsuarioAdmin.jsx"
 
 //aqui es donde importas los componentes que vas a utilizar
 function App() { 
   return (
     <>
       <div>
-       <Administrador></Administrador>
+        <UsuarioAdmin></UsuarioAdmin>
       </div>
     </>
   )
 }
-export default App
+export default App;
