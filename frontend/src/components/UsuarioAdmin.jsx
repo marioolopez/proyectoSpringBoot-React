@@ -2,32 +2,35 @@ import { useEffect, useState } from "react"
 import { crearUsuario, obtenerUsuarios, modificarUsuario, borrarUsuario } from "../api/usuariosApi"
 
 const UsuarioAdmin = () => {
+
   const [usuarios, setUsuarios] = useState([]);
   const [nombre, setNombre] = useState("");
   const [email, setEmail] = useState("");
   const [editandoId, setEditandoId] = useState(null);
 
-  // 🔹 Cargar usuarios al iniciar
+
+  //🔹Cargar usuarios al iniciar
   useEffect(() => {
     cargarUsuarios();
-  }, []);
+  },[]);
+
 
   const cargarUsuarios = async () => {
     const data = await obtenerUsuarios();
     setUsuarios(data);
   };
 
-  // 🔹 Crear o actualizar
+  //🔹Crear o actualizar
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     const usuario = { nombre, email };
 
-    if (editandoId) {
-      await modificarUsuario(editandoId, usuario);
-      setEditandoId(null);
-    } else {
-      await crearUsuario(usuario);
+    if(editandoId){
+       await modificarUsuario(editandoId, usuario);
+       setEditandoId(null);
+    }else {
+       await crearUsuario(usuario);
     }
 
     setNombre("");
@@ -42,7 +45,7 @@ const UsuarioAdmin = () => {
     setEditandoId(usuario.id);
   };
 
-  // 🔹 Eliminar
+  //🔹Eliminar
   const eliminarUsuario = async (id) => {
     await borrarUsuario(id);
     cargarUsuarios();
@@ -52,32 +55,16 @@ const UsuarioAdmin = () => {
     <div>
       <h2>Administrador de Usuarios</h2>
 
-      {/* FORMULARIO */}
+      {/*FORMULARIO*/}
       <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          placeholder="Nombre"
-          value={nombre}
-          onChange={(e) => setNombre(e.target.value)}
-          required
-        />
-
-        <input
-          type="email"
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-        />
-
-        <button type="submit">
-          {editandoId ? "Actualizar" : "Crear"}
-        </button>
+        <input type="text" placeholder="Nombre" value={nombre} onChange={(e) => setNombre(e.target.value)} required/>
+        <input type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} required/>
+        <button type="submit"> {editandoId ? "Actualizar" : "Crear"} </button>
       </form>
 
       <hr />
 
-      {/* LISTA */}
+      {/*LISTA*/}
       <ul>
         {usuarios.map((u) => (
           <li key={u.id}>
